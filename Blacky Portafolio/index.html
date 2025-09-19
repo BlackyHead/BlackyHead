@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Portfolio</title>
     <meta name="description" content="Professional 3D Modeling and Architectural Visualization Portfolio">
-    <!-- Preload critical resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -20,7 +19,7 @@
             --border-opacity: 0.1;
             --transition-timing: 0.3s;
         }
-        
+
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--primary-bg) !important;
@@ -242,13 +241,13 @@
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
-        
+
         /* Focus styles for accessibility */
         a:focus, button:focus {
             outline: 2px solid rgba(59, 130, 246, 0.8);
             outline-offset: 2px;
         }
-        
+
         /* Error state for images */
         .gallery-item img.failed-load {
             min-height: 200px;
@@ -262,7 +261,7 @@
             color: #999;
             font-size: 0.9rem;
         }
-        
+
         /* Skip to content link for accessibility */
         .skip-to-content {
             position: absolute;
@@ -280,13 +279,10 @@
     </style>
 </head>
 <body class="bg-black text-white">
-    <!-- Skip to content link for accessibility -->
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
-    <!-- Navigation - Updated with watermark and circular buttons -->
     <nav class="fixed top-0 left-0 right-0 bg-black bg-opacity-80 backdrop-blur-sm z-50 larger-nav px-6 flex justify-between items-center">
         <div class="flex items-center">
-            <!-- Watermark image instead of logo and text -->
             <img src="https://i.imgur.com/tekKUh1_d.png?maxwidth=520&shape=thumb&fidelity=high" alt="3D Portfolio Logo" class="h-16 watermark">
         </div>
         <div class="hidden md:flex space-x-4 larger-nav-links">
@@ -300,7 +296,6 @@
         </button>
     </nav>
 
-    <!-- Mobile Menu - Also Made Larger -->
     <div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 bg-gray-900 z-50 transform translate-x-full transition-transform duration-300 p-6 hidden">
         <button id="close-menu" class="absolute top-6 right-6 p-2" aria-label="Close mobile menu">
             <i data-feather="x" class="larger-icons"></i>
@@ -313,7 +308,6 @@
         </div>
     </div>
 
-    <!-- Hero Section - Adjusted padding for larger nav -->
     <main id="main-content">
         <div class="pt-32 px-0">
             <div class="w-full h-screen bg-black overflow-hidden">
@@ -321,14 +315,11 @@
             </div>
         </div>
 
-        <!-- Divider between Hero and Modeling -->
         <div class="section-divider"></div>
 
-        <!-- 3D Modeling Section - Updated with new images -->
         <section id="modeling" class="py-16 px-6 md:px-12 lg:px-24 bg-black" data-aos="fade-up">
             <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">3D Modeling</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <!-- Gallery Items - New 3D model images -->
                 <div class="gallery-item rounded-xl overflow-hidden">
                     <div class="image-loading"></div>
                     <img src="https://i.imgur.com/VG5IKx5.jpeg" alt="3D Character Design showcasing detailed modeling and texturing" class="w-full h-64 object-cover rounded-xl" loading="lazy">
@@ -347,14 +338,11 @@
             </div>
         </section>
 
-        <!-- Divider between Modeling and Buildings -->
         <div class="section-divider"></div>
 
-        <!-- 3D Buildings Section -->
         <section id="buildings" class="py-16 px-6 md:px-12 lg:px-24 bg-black" data-aos="fade-up">
             <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">3D Buildings</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <!-- Gallery Items - No titles/descriptions with new images -->
                 <div class="gallery-item rounded-xl overflow-hidden">
                     <div class="image-loading"></div>
                     <img src="https://i.imgur.com/3OvPEdh.jpeg" alt="Modern Tower Architecture with sleek design and glass facade" class="w-full h-64 object-cover rounded-xl" loading="lazy">
@@ -373,10 +361,8 @@
             </div>
         </section>
 
-        <!-- Divider between Buildings and About -->
         <div class="section-divider"></div>
 
-        <!-- About Section - Updated with new profile image -->
         <section id="about" class="py-16 px-6 md:px-12 lg:px-24 bg-black" data-aos="fade-up">
             <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">About Me</h2>
             <div class="max-w-4xl mx-auto bg-black rounded-xl p-8 border border-gray-800">
@@ -390,66 +376,56 @@
             </div>
         </section>
 
-        <!-- Divider between About and TOS -->
         <div class="section-divider"></div>
 
-        <!-- TOS Section -->
-<section id="tos" class="py-16 px-6 md:px-12 lg:px-24 bg-black" data-aos="fade-up">
-    <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">Terms of Service</h2>
-    <div class="max-w-4xl mx-auto">
-        <!-- Commissions -->
-        <div class="mb-8 border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
-            <h3 class="text-2xl font-semibold mb-4 text-blue-300">Commissions</h3>
-            <p class="text-gray-300 text-lg">All commissions require a 30% deposit before work begins. The remaining balance is due upon completion before final files are delivered.</p>
-        </div>
-        
-        <!-- Cost -->
-        <div class="mb-8 border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
-            <h3 class="text-2xl font-semibold mb-4 text-blue-300">Cost</h3>
-            <div class="flex flex-col space-y-4">
-                <div class="border-2 border-green-600 rounded-full p-3 bg-green-900 bg-opacity-40 text-center">
-                    <p class="text-lg"><span class="font-bold text-green-300">Robux Minimum = 5k</span></p>
+        <section id="tos" class="py-16 px-6 md:px-12 lg:px-24 bg-black" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">Terms of Service</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-8 border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-300">Commissions</h3>
+                    <p class="text-gray-300 text-lg">All commissions require a 30% deposit before work begins. The remaining balance is due upon completion before final files are delivered.</p>
                 </div>
-                <div class="border-2 border-green-600 rounded-full p-3 bg-green-900 bg-opacity-40 text-center">
-                    <p class="text-lg"><span class="font-bold text-green-300">USD Minimum = $25</span></p>
+                
+                <div class="mb-8 border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-300">Cost</h3>
+                    <div class="flex flex-col space-y-4">
+                        <div class="border-2 border-green-600 rounded-full p-3 bg-green-900 bg-opacity-40 text-center">
+                            <p class="text-lg"><span class="font-bold text-green-300">Robux Minimum = 5k</span></p>
+                        </div>
+                        <div class="border-2 border-green-600 rounded-full p-3 bg-green-900 bg-opacity-40 text-center">
+                            <p class="text-lg"><span class="font-bold text-green-300">USD Minimum = $25</span></p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-lg mt-4">"Send your commission request along with a price you're offering. We'll then discuss the project and finalize the details.</p>
+                </div>
+                
+                <div class="mb-8 border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-300">Delivery Time</h3>
+                    <p class="text-gray-300 text-lg">Delivery time varies based on project complexity and payment, I can get a project done pretty fast.</p>
+                </div>
+                
+                <div class="mb-8 border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-300">Usage Rights</h3>
+                    <p class="text-gray-300 text-lg">Clients receive full usage rights for commissioned work, except for resale or redistribution of the 3D files themselves.</p>
+                </div>
+                
+                <div class="border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-300">Cancellation Policy</h3>
+                    <p class="text-gray-300 text-lg">Refunds are only available if I am the cause of a delay or cancellation.</p>
                 </div>
             </div>
-            <p class="text-gray-300 text-lg mt-4">"Send your commission request along with a price you're offering. We'll then discuss the project and finalize the details.</p>
-        </div>
-        
-        <!-- Delivery Time -->
-        <div class="mb-8 border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
-            <h3 class="text-2xl font-semibold mb-4 text-blue-300">Delivery Time</h3>
-            <p class="text-gray-300 text-lg">Delivery time varies based on project complexity and payment, I can get a project done pretty fast.</p>
-        </div>
-        
-        <!-- Usage Rights -->
-        <div class="mb-8 border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
-            <h3 class="text-2xl font-semibold mb-4 text-blue-300">Usage Rights</h3>
-            <p class="text-gray-300 text-lg">Clients receive full usage rights for commissioned work, except for resale or redistribution of the 3D files themselves.</p>
-        </div>
-        
-        <!-- Cancellation Policy -->
-        <div class="border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
-            <h3 class="text-2xl font-semibold mb-4 text-blue-300">Cancellation Policy</h3>
-            <p class="text-gray-300 text-lg">Refunds are only available if I am the cause of a delay or cancellation.</p>
-        </div>
-    </div>
-</section>
+        </section>
 
-        <!-- Divider between TOS and Footer -->
         <div class="section-divider"></div>
     </main>
 
-    <!-- Footer - Updated with only Twitter link -->
     <footer class="py-12 px-6 md:px-12 lg:px-24 bg-black border-t border-gray-800">
         <div class="flex flex-col md:flex-row justify-between items-center">
             <div class="flex items-center mb-6 md:mb-0">
                 <img src="https://i.imgur.com/tekKUh1_d.png?maxwidth=520&shape=thumb&fidelity=high" alt="3D Portfolio Logo" class="h-14 watermark mr-3">
-         
+            
             </div>
             <div class="flex space-x-8">
-                <!-- Only Twitter link remains, opens in new tab -->
                 <a href="https://x.com/JustBlackyHead" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition" aria-label="Visit our Twitter profile">
                     <i data-feather="twitter" class="larger-icons"></i>
                 </a>
@@ -460,13 +436,11 @@
         </div>
     </footer>
 
-    <!-- Back to top button -->
     <div class="back-to-top" id="backToTop" aria-label="Back to top">
         <i data-feather="arrow-up" class="text-white"></i>
     </div>
 
-    <!-- Image Modal -->
-    <div class="modal-overlay" id="imageModal">
+    <div class="modal-overlay" id="imageModal" role="dialog" aria-modal="true">
         <div class="modal-content">
             <button class="absolute top-4 right-4 text-white text-2xl z-10 bg-black bg-opacity-50 rounded-full p-2" onclick="closeModal()" aria-label="Close image modal">
                 <i data-feather="x"></i>
@@ -499,17 +473,54 @@
                 once: true
             });
             feather.replace();
+
+            // Dynamic population of gallery items
+            const galleryItemsElements = document.querySelectorAll('.gallery-item');
+            const galleryItems = [];
             
+            galleryItemsElements.forEach(item => {
+                const img = item.querySelector('img');
+                const titleElement = item.querySelector('.gallery-title');
+                galleryItems.push({
+                    src: img.src,
+                    title: titleElement ? titleElement.textContent : '',
+                    alt: img.alt
+                });
+            });
+
             // Preload the first few gallery images for better user experience
-            const preloadImages = [
-                'https://live.staticflickr.com/65535/54797108894_3be5767da2_b.jpg',
-                'https://live.staticflickr.com/65535/54796020202_850c8c55c5_b.jpg',
-                'https://live.staticflickr.com/65535/54797108859_4863456ce0_b.jpg'
-            ];
+            const preloadImages = galleryItems.slice(0, 3).map(item => item.src);
             
             preloadImages.forEach(src => {
                 const img = new Image();
                 img.src = src;
+            });
+            
+            // Add click events to all gallery items
+            galleryItemsElements.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    openModal(index);
+                });
+            });
+            
+            // Hide loading animations when images are loaded
+            const images = document.querySelectorAll('.gallery-item img');
+            images.forEach(img => {
+                img.addEventListener('load', function() {
+                    if (this.parentElement) {
+                        const loader = this.parentElement.querySelector('.image-loading');
+                        if (loader) loader.style.display = 'none';
+                    }
+                });
+                
+                // Handle image loading errors
+                img.addEventListener('error', function() {
+                    this.classList.add('failed-load');
+                    if (this.parentElement) {
+                        const loader = this.parentElement.querySelector('.image-loading');
+                        if (loader) loader.style.display = 'none';
+                    }
+                });
             });
         });
 
@@ -525,6 +536,7 @@
                     });
                     
                     // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
                     if (!mobileMenu.classList.contains('translate-x-full')) {
                         mobileMenu.classList.add('translate-x-full');
                         setTimeout(() => {
@@ -574,31 +586,23 @@
 
         // Gallery modal functionality
         let currentImageIndex = 0;
-        const galleryItems = [
-            { src: 'https://i.imgur.com/VG5IKx5.jpeg', title: 'Character Design', alt: '3D Character Design showcasing detailed modeling and texturing' },
-            { src: 'https://live.staticflickr.com/65535/54796020202_850c8c55c5_b.jpg', title: 'Creature Design', alt: '3D Creature Design with intricate details and realistic textures' },
-            { src: 'https://live.staticflickr.com/65535/54797108859_4863456ce0_b.jpg', title: 'Vehicle Design', alt: '3D Vehicle Design showing sleek modeling and realistic materials' },
-            { src: 'https://i.imgur.com/3OvPEdh.jpeg', title: 'Modern Architecture', alt: 'Modern Tower Architecture with sleek design and glass facade' },
-            { src: 'https://i.imgur.com/GTJZ6z6.jpeg', title: 'Urban Design', alt: 'Urban Complex Design showing detailed city environment' },
-            { src: 'https://i.imgur.com/YgkbgB5.jpeg', title: 'Cityscape', alt: 'Cityscape Visualization with realistic lighting and textures' }
-        ];
+        let galleryItems = []; // This will be populated dynamically
 
-        function openModal(src, title, alt) {
+        function openModal(index) {
+            currentImageIndex = index;
             const modal = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
             const modalTitle = document.getElementById('modalTitle');
-            const modalCounter = document.getElementById('modalCounter');
+            
+            const item = galleryItems[currentImageIndex];
             
             // Show loading state
             modalImage.classList.add('loading');
             modalImage.src = '';
             
-            // Find the index of the clicked image
-            currentImageIndex = galleryItems.findIndex(item => item.src === src);
-            
-            modalImage.src = src;
-            modalImage.alt = alt;
-            modalTitle.textContent = title;
+            modalImage.src = item.src;
+            modalImage.alt = item.alt;
+            modalTitle.textContent = item.title;
             updateModalCounter();
             
             modal.style.display = 'flex';
@@ -618,11 +622,6 @@
                 modalImage.style.maxWidth = '90vw';
                 modalImage.style.width = 'auto';
                 modalImage.style.height = 'auto';
-                
-                // Remove loading animations from gallery items
-                document.querySelectorAll('.image-loading').forEach(loader => {
-                    loader.style.display = 'none';
-                });
             }
             
             // Handle image loading errors
@@ -654,26 +653,20 @@
             
             const modalImage = document.getElementById('modalImage');
             const modalTitle = document.getElementById('modalTitle');
-            const modalCounter = document.getElementById('modalCounter');
             
             // Show loading state
             modalImage.classList.add('loading');
             modalImage.classList.remove('failed-load');
             
-            modalImage.src = galleryItems[currentImageIndex].src;
-            modalImage.alt = galleryItems[currentImageIndex].alt;
-            modalTitle.textContent = galleryItems[currentImageIndex].title;
+            const item = galleryItems[currentImageIndex];
+            modalImage.src = item.src;
+            modalImage.alt = item.alt;
+            modalTitle.textContent = item.title;
             updateModalCounter();
             
             // Remove loading state when image loads
             modalImage.onload = function() {
                 modalImage.classList.remove('loading');
-                
-                // NEW: Ensure consistent sizing for all modal images
-                modalImage.style.maxHeight = '80vh';
-                modalImage.style.maxWidth = '90vw';
-                modalImage.style.width = 'auto';
-                modalImage.style.height = 'auto';
             }
             
             // Handle image loading errors
@@ -711,22 +704,9 @@
             }
         });
 
-        // Add click events to all gallery items
         document.addEventListener('DOMContentLoaded', function() {
             // Get all gallery items and their corresponding large images from our array
             const galleryItemsElements = document.querySelectorAll('.gallery-item');
-            
-            galleryItemsElements.forEach((item, index) => {
-                if (index < galleryItems.length) {
-                    item.addEventListener('click', function() {
-                        // Use the corresponding large image URL from our galleryItems array
-                        const largeImageSrc = galleryItems[index].src;
-                        const title = galleryItems[index].title;
-                        const alt = galleryItems[index].alt;
-                        openModal(largeImageSrc, title, alt);
-                    });
-                }
-            });
             
             // Hide loading animations when images are loaded
             const images = document.querySelectorAll('.gallery-item img');
