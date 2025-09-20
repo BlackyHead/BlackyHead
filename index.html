@@ -626,4 +626,408 @@
         
         #contact .bg-blue-900:hover,
         #contact .bg-indigo-900:hover {
-            transform: translateY
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Loading spinner */
+        .loader-spinner {
+            text-align: center;
+        }
+        
+        .spinner-circle {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #3b82f6;
+            animation: spin 1s ease-in-out infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .larger-nav {
+                padding: 1rem;
+            }
+            
+            .hero-image {
+                height: 60vh;
+            }
+            
+            .section-divider {
+                margin: 40px auto;
+            }
+            
+            #contact .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+
+    <!-- Defer non-critical JavaScript -->
+    <script>
+        // Function to load external scripts dynamically
+        function loadScript(src, async = true) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.async = async;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.body.appendChild(script);
+            });
+        }
+
+        // Function to check if an element is in viewport for lazy loading
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        // Main initialization after DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide loading spinner
+            const loadingSpinner = document.getElementById('loading-spinner');
+            if (loadingSpinner) {
+                loadingSpinner.style.opacity = '0';
+                setTimeout(() => {
+                    loadingSpinner.style.display = 'none';
+                }, 500);
+            }
+
+            // Load non-critical scripts
+            Promise.all([
+                loadScript('https://unpkg.com/aos@2.3.1/dist/aos.js'),
+                loadScript('https://cdn.tailwindcss.com')
+            ]).then(() => {
+                // Initialize AOS
+                if (typeof AOS !== 'undefined') {
+                    AOS.init({
+                        duration: 800,
+                        once: true,
+                        offset: 100
+                    });
+                }
+
+                // Initialize Tailwind if needed
+            }).catch(error => {
+                console.error('Script loading error:', error);
+            });
+
+            // Mobile menu functionality
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenuButton = document.getElementById('close-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.remove('hidden');
+                    setTimeout(() => {
+                        mobileMenu.classList.remove('translate-x-full');
+                    }, 10);
+                });
+            }
+
+            if (closeMenuButton && mobileMenu) {
+                closeMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.add('translate-x-full');
+                    setTimeout(() => {
+                        mobileMenu.classList.add('hidden');
+                    }, 300);
+                });
+            }
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (mobileMenu && !mobileMenu.classList.contains('translate-x-full')) {
+                            mobileMenu.classList.add('translate-x-full');
+                            setTimeout(() => {
+                                mobileMenu.classList.add('hidden');
+                            }, 300);
+                        }
+                    }
+                });
+            });
+
+            // Back to top button
+            const backToTopButton = document.getElementById('backToTop');
+            
+            if (backToTopButton) {
+                window.addEventListener('scroll', () => {
+                    if (window.pageYOffset > 300) {
+                        backToTopButton.classList.add('visible');
+                    } else {
+                        backToTopButton.classList.remove('visible');
+                    }
+                });
+                
+                backToTopButton.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            // Lazy load images that are in viewport
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src || img.src;
+                            img.classList.remove('lazy');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+
+                lazyImages.forEach(img => {
+                    imageObserver.observe(img);
+                });
+            } else {
+                // Fallback for browsers without IntersectionObserver
+                lazyImages.forEach(img => {
+                    img.src = img.dataset.src || img.src;
+                });
+            }
+        });
+
+        // Gallery modal functionality
+        let currentImageIndex = 0;
+        const galleryItems = [
+            { src: 'https://i.imgur.com/VG5IKx5.jpeg', title: 'Character Design', alt: '3D Character Design showcasing detailed modeling and texturing' },
+            { src: 'https://i.imgur.com/jRAQXLP.png', title: 'Creature Design', alt: '3D Creature Design with intricate details and realistic textures' },
+            { src: 'https://i.imgur.com/uHSz4fv.jpeg', title: 'Vehicle Design', alt: '3D Vehicle Design showing sleek modeling and realistic materials' },
+            { src: 'https://i.imgur.com/3OvPEdh.jpeg', title: 'Modern Architecture', alt: 'Modern Tower Architecture with sleek design and glass facade' },
+            { src: 'https://i.imgur.com/GTJZ6z6.jpeg', title: 'Urban Design', alt: 'Urban Complex Design showing detailed city environment' },
+            { src: 'https://i.imgur.com/YgkbgB5.jpeg', title: 'Cityscape', alt: 'Cityscape Visualization with realistic lighting and textures' }
+        ];
+
+        function openModal(src, title, alt) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalCounter = document.getElementById('modalCounter');
+            
+            // Show loading state
+            modalImage.classList.add('loading');
+            modalImage.src = '';
+            
+            // Find the index of the clicked image
+            currentImageIndex = galleryItems.findIndex(item => item.src === src);
+            
+            modalImage.src = src;
+            modalImage.alt = alt;
+            modalTitle.textContent = title;
+            updateModalCounter();
+            
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Activate modal with transition
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+            
+            // Remove loading state when image loads
+            modalImage.onload = function() {
+                modalImage.classList.remove('loading');
+                
+                // Ensure consistent sizing for all modal images
+                modalImage.style.maxHeight = '80vh';
+                modalImage.style.maxWidth = '90vw';
+                modalImage.style.width = 'auto';
+                modalImage.style.height = 'auto';
+                
+                // Remove loading animations from gallery items
+                document.querySelectorAll('.image-loading').forEach(loader => {
+                    loader.style.display = 'none';
+                });
+            }
+            
+            // Handle image loading errors
+            modalImage.onerror = function() {
+                modalImage.classList.remove('loading');
+                modalImage.classList.add('failed-load');
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        function navigateGallery(direction) {
+            currentImageIndex += direction;
+            
+            // Wrap around if at beginning or end
+            if (currentImageIndex < 0) {
+                currentImageIndex = galleryItems.length - 1;
+            } else if (currentImageIndex >= galleryItems.length) {
+                currentImageIndex = 0;
+            }
+            
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalCounter = document.getElementById('modalCounter');
+            
+            // Show loading state
+            modalImage.classList.add('loading');
+            modalImage.classList.remove('failed-load');
+            
+            modalImage.src = galleryItems[currentImageIndex].src;
+            modalImage.alt = galleryItems[currentImageIndex].alt;
+            modalTitle.textContent = galleryItems[currentImageIndex].title;
+            updateModalCounter();
+            
+            // Remove loading state when image loads
+            modalImage.onload = function() {
+                modalImage.classList.remove('loading');
+                
+                // Ensure consistent sizing for all modal images
+                modalImage.style.maxHeight = '80vh';
+                modalImage.style.maxWidth = '90vw';
+                modalImage.style.width = 'auto';
+                modalImage.style.height = 'auto';
+            }
+            
+            // Handle image loading errors
+            modalImage.onerror = function() {
+                modalImage.classList.remove('loading');
+                modalImage.classList.add('failed-load');
+            }
+        }
+        
+        function updateModalCounter() {
+            const modalCounter = document.getElementById('modalCounter');
+            if (modalCounter) {
+                modalCounter.textContent = `${currentImageIndex + 1} / ${galleryItems.length}`;
+            }
+        }
+
+        // Close modal when clicking outside the image
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('imageModal');
+            if (modal && e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Keyboard navigation for modal
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('imageModal');
+            if (modal && modal.style.display === 'flex') {
+                if (e.key === 'Escape') {
+                    closeModal();
+                } else if (e.key === 'ArrowLeft') {
+                    navigateGallery(-1);
+                } else if (e.key === 'ArrowRight') {
+                    navigateGallery(1);
+                }
+            }
+        });
+
+        // Add click events to all gallery items
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all gallery items and their corresponding large images from our array
+            const galleryItemsElements = document.querySelectorAll('.gallery-item');
+            
+            galleryItemsElements.forEach((item, index) => {
+                if (index < galleryItems.length) {
+                    item.addEventListener('click', function() {
+                        // Use the corresponding large image URL from our galleryItems array
+                        const largeImageSrc = galleryItems[index].src;
+                        const title = galleryItems[index].title;
+                        const alt = galleryItems[index].alt;
+                        openModal(largeImageSrc, title, alt);
+                    });
+                }
+            });
+            
+            // Hide loading animations when images are loaded
+            const images = document.querySelectorAll('.gallery-item img');
+            let loadedCount = 0;
+            
+            images.forEach(img => {
+                if (img.complete) {
+                    loadedCount++;
+                    if (img.parentElement) {
+                        const loader = img.parentElement.querySelector('.image-loading');
+                        if (loader) loader.style.display = 'none';
+                    }
+                } else {
+                    img.addEventListener('load', function() {
+                        loadedCount++;
+                        if (this.parentElement) {
+                            const loader = this.parentElement.querySelector('.image-loading');
+                            if (loader) loader.style.display = 'none';
+                        }
+                    });
+                    
+                    // Handle image loading errors
+                    img.addEventListener('error', function() {
+                        this.classList.add('failed-load');
+                        if (this.parentElement) {
+                            const loader = this.parentElement.querySelector('.image-loading');
+                            if (loader) loader.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+
+        // Copy Discord username to clipboard
+        function copyDiscord() {
+            navigator.clipboard.writeText('blackyhead').then(() => {
+                // Show feedback that the text was copied
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
