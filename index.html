@@ -6,7 +6,7 @@
     <title>3D Portfolio</title>
     <meta name="description" content="Professional 3D Modeling and Architectural Visualization Portfolio">
     
-    <!-- Favicon (Browser Tab Icon) -->
+    <!-- Favicon -->
     <link rel="icon" href="https://i.imgur.com/tekKUh1_d.png?maxwidth=520&shape=thumb&fidelity=high" type="image/png">
     
     <!-- Preload critical resources -->
@@ -14,25 +14,340 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"></noscript>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
     <style>
+        /* Critical CSS - Inlined for performance */
         :root {
             --primary-bg: #000000;
             --border-opacity: 0.1;
             --transition-timing: 0.3s;
         }
         
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--primary-bg) !important;
+            background-color: var(--primary-bg);
+            color: white;
             margin: 0;
             padding: 0;
             position: relative;
+            overflow-x: hidden;
         }
-        /* Subtle white border around the screen */
+        
+        /* Layout and structure */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Additional styles will be loaded async */
+    </style>
+    
+    <!-- Defer non-critical styles and scripts -->
+    <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></noscript>
+    
+    <!-- Preload key requests -->
+    <link rel="preload" href="https://i.imgur.com/v8hLnps.png" as="image">
+    <link rel="preload" href="https://i.imgur.com/VG5IKx5.jpeg" as="image">
+    <link rel="preload" href="https://i.imgur.com/3OvPEdh.jpeg" as="image">
+</head>
+<body class="bg-black text-white">
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-black bg-opacity-80 backdrop-blur-sm z-50 larger-nav px-6 flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="https://i.imgur.com/tekKUh1_d.png?maxwidth=520&shape=thumb&fidelity=high" alt="3D Portfolio Logo" class="h-16 watermark">
+        </div>
+        <div class="hidden md:flex space-x-4 larger-nav-links">
+            <a href="#modeling" class="nav-button hover:text-blue-400 transition">3D Modeling</a>
+            <a href="#buildings" class="nav-button hover:text-blue-400 transition">3D Buildings</a>
+            <a href="#about" class="nav-button hover:text-blue-400 transition">About</a>
+            <a href="#contact" class="nav-button hover:text-blue-400 transition">Contact</a>
+            <a href="#tos" class="nav-button hover:text-blue-400 transition">TOS</a>
+        </div>
+        <button class="md:hidden p-3" id="mobile-menu-button" aria-label="Open mobile menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="larger-icons"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 bg-gray-900 z-50 transform translate-x-full transition-transform duration-300 p-6 hidden">
+        <button id="close-menu" class="absolute top-6 right-6 p-2" aria-label="Close mobile menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="larger-icons"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        <div class="flex flex-col space-y-8 mt-20 larger-nav-links">
+            <a href="#modeling" class="text-2xl hover:text-blue-400 transition">3D Modeling</a>
+            <a href="#buildings" class="text-2xl hover:text-blue-400 transition">3D Buildings</a>
+            <a href="#about" class="text-2xl hover:text-blue-400 transition">About</a>
+            <a href="#contact" class="text-2xl hover:text-blue-400 transition">Contact</a>
+            <a href="#tos" class="text-2xl hover:text-blue-400 transition">TOS</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <main id="main-content">
+        <div class="pt-32 px-0">
+            <div class="w-full h-screen bg-black overflow-hidden">
+                <img src="https://i.imgur.com/v8hLnps.png" alt="3D Portfolio Showcase" class="hero-image" loading="eager" width="1920" height="1080">
+            </div>
+        </div>
+
+        <!-- Divider between Hero and Modeling -->
+        <div class="section-divider"></div>
+
+        <!-- 3D Modeling Section -->
+        <section id="modeling" class="py-16 px-6 md:px-12 lg:px-24 bg-black" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">3D Modeling</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <div class="gallery-item rounded-xl overflow-hidden">
+                    <div class="image-loading"></div>
+                    <img src="https://i.imgur.com/VG5IKx5.jpeg" alt="3D Character Design showcasing detailed modeling and texturing" class="w-full h-64 object-cover rounded-xl" loading="lazy" width="600" height="400">
+                    <div class="gallery-title">Character Design</div>
+                </div>
+                <div class="gallery-item rounded-xl overflow-hidden">
+                    <div class="image-loading"></div>
+                    <img src="https://i.imgur.com/jRAQXLP.png" alt="3D Creature Design with intricate details and realistic textures" class="w-full h-64 object-cover rounded-xl" loading="lazy" width="600" height="400">
+                    <div class="gallery-title">Creature Design</div>
+                </div>
+                <div class="gallery-item rounded-xl overflow-hidden">
+                    <div class="image-loading"></div>
+                    <img src="https://i.imgur.com/uHSz4fv.jpeg" alt="3D Vehicle Design showing sleek modeling and realistic materials" class="w-full h-64 object-cover rounded-xl" loading="lazy" width="600" height="400">
+                    <div class="gallery-title">Vehicle Design</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider between Modeling and Buildings -->
+        <div class="section-divider"></div>
+
+        <!-- 3D Buildings Section -->
+        <section id="buildings" class="py-16 px-6 md:px-12 lg:px-24 bg-black" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">3D Buildings</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <div class="gallery-item rounded-xl overflow-hidden">
+                    <div class="image-loading"></div>
+                    <img src="https://i.imgur.com/3OvPEdh.jpeg" alt="Modern Tower Architecture with sleek design and glass facade" class="w-full h-64 object-cover rounded-xl" loading="lazy" width="600" height="400">
+                    <div class="gallery-title">Modern Architecture</div>
+                </div>
+                <div class="gallery-item rounded-xl overflow-hidden">
+                    <div class="image-loading"></div>
+                    <img src="https://i.imgur.com/GTJZ6z6.jpeg" alt="Urban Complex Design showing detailed city environment" class="w-full h-64 object-cover rounded-xl" loading="lazy" width="600" height="400">
+                    <div class="gallery-title">Urban Design</div>
+                </div>
+                <div class="gallery-item rounded-xl overflow-hidden">
+                    <div class="image-loading"></div>
+                    <img src="https://i.imgur.com/YgkbgB5.jpeg" alt="Cityscape Visualization with realistic lighting and textures" class="w-full h-64 object-cover rounded-xl" loading="lazy" width="600" height="400">
+                    <div class="gallery-title">Cityscape</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider between Buildings and About -->
+        <div class="section-divider"></div>
+
+        <!-- About Section -->
+        <section id="about" class="py-16 px-6 md:px-12 lg:px-24 bg-black" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">About Me</h2>
+            <div class="max-w-4xl mx-auto bg-black rounded-xl p-8 border border-gray-800">
+                <div class="flex flex-col md:flex-row items-center">
+                    <img src="https://live.staticflickr.com/65535/54797218270_3840da4e6d_b.jpg" alt="3D Artist Profile Picture" class="w-56 h-56 rounded-full object-cover mb-6 md:mb-0 md:mr-8" loading="lazy" width="224" height="224">
+                    <div>
+                        <h3 class="text-3xl font-semibold mb-6">3D Artist & Designer</h3>
+                        <p class="text-gray-300 mb-6 text-lg">Colombian Christian developer with over 4 years of experience in 3D modeling and building.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider between About and Contact -->
+        <div class="section-divider"></div>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 px-6 md:px-12 lg:px-24 bg-black" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">Contact Me</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-gray-900 bg-opacity-50 rounded-2xl p-8 border-2 border-gray-700">
+                        <h3 class="text-2xl font-semibold mb-6 text-blue-300">Get in Touch</h3>
+                        <p class="text-gray-300 mb-6 text-lg">Interested in working together? Reach out through any of these platforms:</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center">
+                                <div class="bg-blue-900 bg-opacity-30 p-3 rounded-full mr-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-medium">Twitter</h4>
+                                    <p class="text-gray-400">@JustBlackyHead</p>
+                                    <a href="https://x.com/JustBlackyHead" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition text-sm mt-1 inline-block">Send a message</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="bg-indigo-900 bg-opacity-30 p-3 rounded-full mr-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-medium">Discord</h4>
+                                    <p class="text-gray-400">blackyhead</p>
+                                    <button onclick="copyDiscord()" class="text-blue-400 hover:text-blue-300 transition text-sm mt-1 inline-block">Copy username</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 bg-opacity-50 rounded-2xl p-8 border-2 border-gray-700">
+                        <h3 class="text-2xl font-semibold mb-6 text-blue-300">Commission Inquiry</h3>
+                        <p class="text-gray-300 mb-6 text-lg">Looking to commission a project? Include these details:</p>
+                        
+                        <ul class="text-gray-300 space-y-3 mb-6">
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400 mr-2 mt-1"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Project type (3D model, building, etc.)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400 mr-2 mt-1"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Desired style and complexity</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400 mr-2 mt-1"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Reference images or descriptions</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400 mr-2 mt-1"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Budget and timeline</span>
+                            </li>
+                        </ul>
+                        
+                        <p class="text-gray-400 text-sm">Contact me through Twitter for the fastest response!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider between Contact and TOS -->
+        <div class="section-divider"></div>
+
+        <!-- TOS Section -->
+        <section id="tos" class="py-16 px-6 md:px-12 lg:px-24 bg-black" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">Terms of Service</h2>
+            <div class="max-w-4xl mx-auto">
+                <!-- Commissions -->
+                <div class="mb-8 border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-300">Commissions</h3>
+                    <p class="text-gray-300 text-lg">All commissions require a 30% deposit before work begins. The remaining balance is due upon completion before final files are delivered.</p>
+                </div>
+                
+                <!-- Cost -->
+                <div class="mb-8 border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-300">Cost</h3>
+                    <div class="flex flex-col space-y-4">
+                        <div class="border-2 border-green-600 rounded-full p-3 bg-green-900 bg-opacity-40 text-center">
+                            <p class="text-lg"><span class="font-bold text-green-300">Robux Minimum = 5k</span></p>
+                        </div>
+                        <div class="border-2 border-green-600 rounded-full p-3 bg-green-900 bg-opacity-40 text-center">
+                            <p class="text-lg"><span class="font-bold text-green-300">USD Minimum = $25</span></p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-lg mt-4">Send your commission request along with a price you're offering. We'll then discuss the project and finalize the details.</p>
+                </div>
+                
+                <!-- Delivery Time -->
+                <div class="mb-8 border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-300">Delivery Time</h3>
+                    <p class="text-gray-300 text-lg">Delivery time varies based on project complexity and payment. I can get a project done pretty fast.</p>
+                </div>
+                
+                <!-- Usage Rights -->
+                <div class="mb-8 border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-300">Usage Rights</h3>
+                    <p class="text-gray-300 text-lg">Clients receive full usage rights for commissioned work, except for resale or redistribution of the 3D files themselves.</p>
+                </div>
+                
+                <!-- Cancellation Policy -->
+                <div class="border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-300">Cancellation Policy</h3>
+                    <p class="text-gray-300 text-lg">Refunds are only available if I am the cause of a delay or cancellation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider between TOS and Footer -->
+        <div class="section-divider"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 md:px-12 lg:px-24 bg-black border-t border-gray-800">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center mb-6 md:mb-0">
+                <img src="https://i.imgur.com/tekKUh1_d.png?maxwidth=520&shape=thumb&fidelity=high" alt="3D Portfolio Logo" class="h-14 watermark mr-3">
+            </div>
+            <div class="flex space-x-8">
+                <a href="https://x.com/JustBlackyHead" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition" aria-label="Visit our Twitter profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="larger-icons"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                </a>
+            </div>
+        </div>
+        <div class="text-center mt-8 text-gray-400 text-base">
+            &copy; 2025 3D Portfolio. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <div class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="modal-overlay" id="imageModal">
+        <div class="modal-content">
+            <button class="absolute top-4 right-4 text-white text-2xl z-10 bg-black bg-opacity-50 rounded-full p-2" onclick="closeModal()" aria-label="Close image modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="modal-image-container">
+                <img id="modalImage" src="" alt="" class="loading">
+            </div>
+            <div class="absolute top-1/2 left-4 transform -translate-y-1/2 nav-btn">
+                <button class="bg-black bg-opacity-50 text-white p-2 rounded-full" onclick="navigateGallery(-1)" aria-label="Previous image">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+            </div>
+            <div class="absolute top-1/2 right-4 transform -translate-y-1/2 nav-btn">
+                <button class="bg-black bg-opacity-50 text-white p-2 rounded-full" onclick="navigateGallery(1)" aria-label="Next image">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+            <div class="absolute bottom-4 left-0 right-0 text-center text-white bg-black bg-opacity-50 py-2 rounded-lg">
+                <h3 id="modalTitle" class="text-xl font-semibold"></h3>
+                <p id="modalCounter" class="text-sm text-gray-300 mt-1"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 transition-opacity duration-500">
+        <div class="loader-spinner">
+            <div class="spinner-circle"></div>
+            <p class="text-white mt-4 text-lg">Loading portfolio...</p>
+        </div>
+    </div>
+
+    <!-- Load non-critical CSS asynchronously -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" media="print" onload="this.media='all'">
+    
+    <!-- Inline the rest of the CSS for performance -->
+    <style>
+        /* Critical CSS is already inlined above, this is the rest */
         body::before {
             content: '';
             position: fixed;
@@ -44,7 +359,7 @@
             pointer-events: none;
             z-index: 1000;
         }
-        /* Subtle background pattern */
+        
         body::after {
             content: '';
             position: fixed;
@@ -57,17 +372,19 @@
             pointer-events: none;
             z-index: -1;
         }
+        
         .gallery-item {
             transition: all var(--transition-timing) ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
         }
+        
         .gallery-item:hover {
             transform: scale(1.05);
             z-index: 10;
         }
-        /* Title overlay on gallery items */
+        
         .gallery-title {
             position: absolute;
             bottom: 0;
@@ -80,10 +397,12 @@
             transform: translateY(10px);
             transition: all var(--transition-timing) ease;
         }
+        
         .gallery-item:hover .gallery-title {
             opacity: 1;
             transform: translateY(0);
         }
+        
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -99,9 +418,11 @@
             opacity: 0;
             transition: opacity var(--transition-timing) ease;
         }
+        
         .modal-overlay.active {
             opacity: 1;
         }
+        
         .modal-content {
             max-width: 90%;
             max-height: 90%;
@@ -109,10 +430,11 @@
             transform: scale(0.9);
             transition: transform var(--transition-timing) ease;
         }
+        
         .modal-overlay.active .modal-content {
             transform: scale(1);
         }
-        /* FIX FOR MODAL IMAGE SIZE - UPDATED TO ENSURE CONSISTENCY */
+        
         .modal-content img {
             max-width: 90vw;
             max-height: 80vh;
@@ -121,7 +443,7 @@
             object-fit: contain;
             border-radius: 12px;
         }
-        /* NEW: Force consistent sizing for all modal images */
+        
         .modal-image-container {
             display: flex;
             justify-content: center;
@@ -129,6 +451,7 @@
             width: 100%;
             height: 100%;
         }
+        
         #modalImage {
             transition: opacity var(--transition-timing) ease;
             max-height: 80vh;
@@ -136,18 +459,23 @@
             width: auto;
             height: auto;
         }
+        
         #modalImage.loading {
             opacity: 0;
         }
+        
         .nav-btn {
             transition: all var(--transition-timing) ease;
         }
+        
         .nav-btn:hover {
             transform: scale(1.2);
         }
+        
         section {
-            scroll-margin-top: 120px; /* Increased for larger nav */
+            scroll-margin-top: 120px;
         }
+        
         .hero-image {
             width: 100%;
             height: 100vh;
@@ -155,6 +483,7 @@
             object-position: top center;
             max-height: 100vh;
         }
+        
         .section-divider {
             width: 80%;
             height: 2px;
@@ -162,27 +491,31 @@
             margin: 60px auto;
             opacity: 0.6;
         }
-        /* Larger navigation styles */
+        
         .larger-nav {
             padding-top: 1.5rem;
             padding-bottom: 1.5rem;
         }
+        
         .larger-nav-text {
             font-size: 1.5rem;
             font-weight: bold;
         }
+        
         .larger-nav-links {
             font-size: 1.25rem;
         }
+        
         .larger-logo {
             width: 3.5rem;
             height: 3.5rem;
         }
+        
         .larger-icons {
             width: 28px;
             height: 28px;
         }
-        /* Circular button style for nav links */
+        
         .nav-button {
             padding: 12px 24px;
             border: 2px solid rgba(255, 255, 255, 0.3);
@@ -190,18 +523,19 @@
             transition: all var(--transition-timing) ease;
             background: rgba(0, 0, 0, 0.3);
         }
+        
         .nav-button:hover, .nav-button:focus {
             border-color: rgba(59, 130, 246, 0.8);
             background: rgba(59, 130, 246, 0.1);
             transform: translateY(-2px);
             outline: none;
         }
-        /* Watermark style */
+        
         .watermark {
             opacity: 0.9;
             mix-blend-mode: screen;
         }
-        /* Back to top button */
+        
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -221,16 +555,18 @@
             transition: all var(--transition-timing) ease;
             z-index: 999;
         }
+        
         .back-to-top.visible {
             opacity: 1;
             visibility: visible;
         }
+        
         .back-to-top:hover, .back-to-top:focus {
             background: rgba(59, 130, 246, 0.2);
             border-color: rgba(59, 130, 246, 0.5);
             outline: none;
         }
-        /* Loading animation for gallery images */
+        
         .image-loading {
             position: absolute;
             top: 0;
@@ -242,18 +578,17 @@
             animation: loading 1.5s infinite;
             border-radius: 12px;
         }
+        
         @keyframes loading {
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
         
-        /* Focus styles for accessibility */
         a:focus, button:focus {
             outline: 2px solid rgba(59, 130, 246, 0.8);
             outline-offset: 2px;
         }
         
-        /* Error state for images */
         .gallery-item img.failed-load {
             min-height: 200px;
             background: linear-gradient(45deg, #222, #444);
@@ -261,13 +596,13 @@
             align-items: center;
             justify-content: center;
         }
+        
         .gallery-item img.failed-load::after {
             content: 'Image failed to load';
             color: #999;
             font-size: 0.9rem;
         }
         
-        /* Skip to content link for accessibility */
         .skip-to-content {
             position: absolute;
             top: -40px;
@@ -278,491 +613,17 @@
             z-index: 10000;
             transition: top 0.3s;
         }
+        
         .skip-to-content:focus {
             top: 0;
         }
-    </style>
-</head>
-<body class="bg-black text-white">
-    <!-- Skip to content link for accessibility -->
-    <a href="#main-content" class="skip-to-content">Skip to main content</a>
-
-    <!-- Navigation - Updated with watermark and circular buttons -->
-    <nav class="fixed top-0 left-0 right-0 bg-black bg-opacity-80 backdrop-blur-sm z-50 larger-nav px-6 flex justify-between items-center">
-        <div class="flex items-center">
-            <!-- Watermark image instead of logo and text -->
-            <img src="https://i.imgur.com/tekKUh1_d.png?maxwidth=520&shape=thumb&fidelity=high" alt="3D Portfolio Logo" class="h-16 watermark">
-        </div>
-        <div class="hidden md:flex space-x-4 larger-nav-links">
-            <a href="#modeling" class="nav-button hover:text-blue-400 transition">3D Modeling</a>
-            <a href="#buildings" class="nav-button hover:text-blue-400 transition">3D Buildings</a>
-            <a href="#about" class="nav-button hover:text-blue-400 transition">About</a>
-            <a href="#tos" class="nav-button hover:text-blue-400 transition">TOS</a>
-        </div>
-        <button class="md:hidden p-3" id="mobile-menu-button" aria-label="Open mobile menu">
-            <i data-feather="menu" class="larger-icons"></i>
-        </button>
-    </nav>
-
-    <!-- Mobile Menu - Also Made Larger -->
-    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 bg-gray-900 z-50 transform translate-x-full transition-transform duration-300 p-6 hidden">
-        <button id="close-menu" class="absolute top-6 right-6 p-2" aria-label="Close mobile menu">
-            <i data-feather="x" class="larger-icons"></i>
-        </button>
-        <div class="flex flex-col space-y-8 mt-20 larger-nav-links">
-            <a href="#modeling" class="text-2xl hover:text-blue-400 transition">3D Modeling</a>
-            <a href="#buildings" class="text-2xl hover:text-blue-400 transition">3D Buildings</a>
-            <a href="#about" class="text-2xl hover:text-blue-400 transition">About</a>
-            <a href="#tos" class="text-2xl hover:text-blue-400 transition">TOS</a>
-        </div>
-    </div>
-
-    <!-- Hero Section - Adjusted padding for larger nav -->
-    <main id="main-content">
-        <div class="pt-32 px-0">
-            <div class="w-full h-screen bg-black overflow-hidden">
-                <img src="https://i.imgur.com/v8hLnps.png" alt="3D Portfolio Showcase" class="hero-image" loading="eager">
-            </div>
-        </div>
-
-        <!-- Divider between Hero and Modeling -->
-        <div class="section-divider"></div>
-
-        <!-- 3D Modeling Section - Updated with new images -->
-        <section id="modeling" class="py-16 px-6 md:px-12 lg:px-24 bg-black" data-aos="fade-up">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">3D Modeling</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <!-- Gallery Items - New 3D model images -->
-                <div class="gallery-item rounded-xl overflow-hidden">
-                    <div class="image-loading"></div>
-                    <img src="https://i.imgur.com/VG5IKx5.jpeg" alt="3D Character Design showcasing detailed modeling and texturing" class="w-full h-64 object-cover rounded-xl" loading="lazy">
-                    <div class="gallery-title">Character Design</div>
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden">
-                    <div class="image-loading"></div>
-                    <img src="https://i.imgur.com/jRAQXLP.png" alt="3D Creature Design with intricate details and realistic textures" class="w-full h-64 object-cover rounded-xl" loading="lazy">
-                    <div class="gallery-title">Creature Design</div>
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden">
-                    <div class="image-loading"></div>
-                    <img src="https://i.imgur.com/uHSz4fv.jpeg" alt="3D Vehicle Design showing sleek modeling and realistic materials" class="w-full h-64 object-cover rounded-xl" loading="lazy">
-                    <div class="gallery-title">Vehicle Design</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Divider between Modeling and Buildings -->
-        <div class="section-divider"></div>
-
-        <!-- 3D Buildings Section -->
-        <section id="buildings" class="py-16 px-6 md:px-12 lg:px-24 bg-black" data-aos="fade-up">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">3D Buildings</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <!-- Gallery Items - No titles/descriptions with new images -->
-                <div class="gallery-item rounded-xl overflow-hidden">
-                    <div class="image-loading"></div>
-                    <img src="https://i.imgur.com/3OvPEdh.jpeg" alt="Modern Tower Architecture with sleek design and glass facade" class="w-full h-64 object-cover rounded-xl" loading="lazy">
-                    <div class="gallery-title">Modern Architecture</div>
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden">
-                    <div class="image-loading"></div>
-                    <img src="https://i.imgur.com/GTJZ6z6.jpeg" alt="Urban Complex Design showing detailed city environment" class="w-full h-64 object-cover rounded-xl" loading="lazy">
-                    <div class="gallery-title">Urban Design</div>
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden">
-                    <div class="image-loading"></div>
-                    <img src="https://i.imgur.com/YgkbgB5.jpeg" alt="Cityscape Visualization with realistic lighting and textures" class="w-full h-64 object-cover rounded-xl" loading="lazy">
-                    <div class="gallery-title">Cityscape</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Divider between Buildings and About -->
-        <div class="section-divider"></div>
-
-        <!-- About Section - Updated with new profile image -->
-        <section id="about" class="py-16 px-6 md:px-12 lg:px-24 bg-black" data-aos="fade-up">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">About Me</h2>
-            <div class="max-w-4xl mx-auto bg-black rounded-xl p-8 border border-gray-800">
-                <div class="flex flex-col md:flex-row items-center">
-                    <img src="https://live.staticflickr.com/65535/54797218270_3840da4e6d_b.jpg" alt="3D Artist Profile Picture" class="w-56 h-56 rounded-full object-cover mb-6 md:mb-0 md:mr-8" loading="lazy">
-                    <div>
-                        <h3 class="text-3xl font-semibold mb-6">3D Artist & Designer</h3>
-                        <p class="text-gray-300 mb-6 text-lg">Colombian Christian developer With over 4 years of experience in 3D modeling and building .</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Divider between About and TOS -->
-        <div class="section-divider"></div>
-
-        <!-- TOS Section -->
-<section id="tos" class="py-16 px-6 md:px-12 lg:px-24 bg-black" data-aos="fade-up">
-    <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">Terms of Service</h2>
-    <div class="max-w-4xl mx-auto">
-        <!-- Commissions -->
-        <div class="mb-8 border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
-            <h3 class="text-2xl font-semibold mb-4 text-blue-300">Commissions</h3>
-            <p class="text-gray-300 text-lg">All commissions require a 30% deposit before work begins. The remaining balance is due upon completion before final files are delivered.</p>
-        </div>
         
-        <!-- Cost -->
-        <div class="mb-8 border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
-            <h3 class="text-2xl font-semibold mb-4 text-blue-300">Cost</h3>
-            <div class="flex flex-col space-y-4">
-                <div class="border-2 border-green-600 rounded-full p-3 bg-green-900 bg-opacity-40 text-center">
-                    <p class="text-lg"><span class="font-bold text-green-300">Robux Minimum = 5k</span></p>
-                </div>
-                <div class="border-2 border-green-600 rounded-full p-3 bg-green-900 bg-opacity-40 text-center">
-                    <p class="text-lg"><span class="font-bold text-green-300">USD Minimum = $25</span></p>
-                </div>
-            </div>
-            <p class="text-gray-300 text-lg mt-4">"Send your commission request along with a price you're offering. We'll then discuss the project and finalize the details.</p>
-        </div>
-        
-        <!-- Delivery Time -->
-        <div class="mb-8 border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
-            <h3 class="text-2xl font-semibold mb-4 text-blue-300">Delivery Time</h3>
-            <p class="text-gray-300 text-lg">Delivery time varies based on project complexity and payment, I can get a project done pretty fast.</p>
-        </div>
-        
-        <!-- Usage Rights -->
-        <div class="mb-8 border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
-            <h3 class="text-2xl font-semibold mb-4 text-blue-300">Usage Rights</h3>
-            <p class="text-gray-300 text-lg">Clients receive full usage rights for commissioned work, except for resale or redistribution of the 3D files themselves.</p>
-        </div>
-        
-        <!-- Cancellation Policy -->
-        <div class="border-2 border-gray-700 rounded-2xl p-6 bg-gray-900 bg-opacity-50">
-            <h3 class="text-2xl font-semibold mb-4 text-blue-300">Cancellation Policy</h3>
-            <p class="text-gray-300 text-lg">Refunds are only available if I am the cause of a delay or cancellation.</p>
-        </div>
-    </div>
-</section>
-
-        <!-- Divider between TOS and Footer -->
-        <div class="section-divider"></div>
-    </main>
-
-    <!-- Footer - Updated with only Twitter link -->
-    <footer class="py-12 px-6 md:px-12 lg:px-24 bg-black border-t border-gray-800">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-            <div class="flex items-center mb-6 md:mb-0">
-                <img src="https://i.imgur.com/tekKUh1_d.png?maxwidth=520&shape=thumb&fidelity=high" alt="3D Portfolio Logo" class="h-14 watermark mr-3">
-         
-            </div>
-            <div class="flex space-x-8">
-                <!-- Only Twitter link remains, opens in new tab -->
-                <a href="https://x.com/JustBlackyHead" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition" aria-label="Visit our Twitter profile">
-                    <i data-feather="twitter" class="larger-icons"></i>
-                </a>
-            </div>
-        </div>
-        <div class="text-center mt-8 text-gray-400 text-base">
-            &copy; 2025 3D Portfolio. All rights reserved.
-        </div>
-    </footer>
-
-    <!-- Back to top button -->
-    <div class="back-to-top" id="backToTop" aria-label="Back to top">
-        <i data-feather="arrow-up" class="text-white"></i>
-    </div>
-
-    <!-- Image Modal -->
-    <div class="modal-overlay" id="imageModal">
-        <div class="modal-content">
-            <button class="absolute top-4 right-4 text-white text-2xl z-10 bg-black bg-opacity-50 rounded-full p-2" onclick="closeModal()" aria-label="Close image modal">
-                <i data-feather="x"></i>
-            </button>
-            <div class="modal-image-container">
-                <img id="modalImage" src="" alt="" class="loading">
-            </div>
-            <div class="absolute top-1/2 left-4 transform -translate-y-1/2 nav-btn">
-                <button class="bg-black bg-opacity-50 text-white p-2 rounded-full" onclick="navigateGallery(-1)" aria-label="Previous image">
-                    <i data-feather="chevron-left" class="w-8 h-8"></i>
-                </button>
-            </div>
-            <div class="absolute top-1/2 right-4 transform -translate-y-1/2 nav-btn">
-                <button class="bg-black bg-opacity-50 text-white p-2 rounded-full" onclick="navigateGallery(1)" aria-label="Next image">
-                    <i data-feather="chevron-right" class="w-8 h-8"></i>
-                </button>
-            </div>
-            <div class="absolute bottom-4 left-0 right-0 text-center text-white bg-black bg-opacity-50 py-2 rounded-lg">
-                <h3 id="modalTitle" class="text-xl font-semibold"></h3>
-                <p id="modalCounter" class="text-sm text-gray-300 mt-1"></p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Initialize AOS and Feather Icons
-        document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({
-                duration: 800,
-                once: true
-            });
-            feather.replace();
-            
-            // Preload the first few gallery images for better user experience
-            const preloadImages = [
-                'https://live.staticflickr.com/65535/54797108894_3be5767da2_b.jpg',
-                'https://live.staticflickr.com/65535/54796020202_850c8c55c5_b.jpg',
-                'https://live.staticflickr.com/65535/54797108859_4863456ce0_b.jpg'
-            ];
-            
-            preloadImages.forEach(src => {
-                const img = new Image();
-                img.src = src;
-            });
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (!mobileMenu.classList.contains('translate-x-full')) {
-                        mobileMenu.classList.add('translate-x-full');
-                        setTimeout(() => {
-                            mobileMenu.classList.add('hidden');
-                        }, 300);
-                    }
-                }
-            });
-        });
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMenuButton = document.getElementById('close-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.remove('hidden');
-            setTimeout(() => {
-                mobileMenu.classList.remove('translate-x-full');
-            }, 10);
-        });
-
-        closeMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.add('translate-x-full');
-            setTimeout(() => {
-                mobileMenu.classList.add('hidden');
-            }, 300);
-        });
-
-        // Back to top button
-        const backToTopButton = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Gallery modal functionality
-        let currentImageIndex = 0;
-        const galleryItems = [
-            { src: 'https://i.imgur.com/VG5IKx5.jpeg', title: 'Character Design', alt: '3D Character Design showcasing detailed modeling and texturing' },
-            { src: 'https://live.staticflickr.com/65535/54796020202_850c8c55c5_b.jpg', title: 'Creature Design', alt: '3D Creature Design with intricate details and realistic textures' },
-            { src: 'https://live.staticflickr.com/65535/54797108859_4863456ce0_b.jpg', title: 'Vehicle Design', alt: '3D Vehicle Design showing sleek modeling and realistic materials' },
-            { src: 'https://i.imgur.com/3OvPEdh.jpeg', title: 'Modern Architecture', alt: 'Modern Tower Architecture with sleek design and glass facade' },
-            { src: 'https://i.imgur.com/GTJZ6z6.jpeg', title: 'Urban Design', alt: 'Urban Complex Design showing detailed city environment' },
-            { src: 'https://i.imgur.com/YgkbgB5.jpeg', title: 'Cityscape', alt: 'Cityscape Visualization with realistic lighting and textures' }
-        ];
-
-        function openModal(src, title, alt) {
-            const modal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalCounter = document.getElementById('modalCounter');
-            
-            // Show loading state
-            modalImage.classList.add('loading');
-            modalImage.src = '';
-            
-            // Find the index of the clicked image
-            currentImageIndex = galleryItems.findIndex(item => item.src === src);
-            
-            modalImage.src = src;
-            modalImage.alt = alt;
-            modalTitle.textContent = title;
-            updateModalCounter();
-            
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            
-            // Activate modal with transition
-            setTimeout(() => {
-                modal.classList.add('active');
-            }, 10);
-            
-            // Remove loading state when image loads
-            modalImage.onload = function() {
-                modalImage.classList.remove('loading');
-                
-                // NEW: Ensure consistent sizing for all modal images
-                modalImage.style.maxHeight = '80vh';
-                modalImage.style.maxWidth = '90vw';
-                modalImage.style.width = 'auto';
-                modalImage.style.height = 'auto';
-                
-                // Remove loading animations from gallery items
-                document.querySelectorAll('.image-loading').forEach(loader => {
-                    loader.style.display = 'none';
-                });
-            }
-            
-            // Handle image loading errors
-            modalImage.onerror = function() {
-                modalImage.classList.remove('loading');
-                modalImage.classList.add('failed-load');
-            }
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            modal.classList.remove('active');
-            
-            setTimeout(() => {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }, 300);
-        }
-
-        function navigateGallery(direction) {
-            currentImageIndex += direction;
-            
-            // Wrap around if at beginning or end
-            if (currentImageIndex < 0) {
-                currentImageIndex = galleryItems.length - 1;
-            } else if (currentImageIndex >= galleryItems.length) {
-                currentImageIndex = 0;
-            }
-            
-            const modalImage = document.getElementById('modalImage');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalCounter = document.getElementById('modalCounter');
-            
-            // Show loading state
-            modalImage.classList.add('loading');
-            modalImage.classList.remove('failed-load');
-            
-            modalImage.src = galleryItems[currentImageIndex].src;
-            modalImage.alt = galleryItems[currentImageIndex].alt;
-            modalTitle.textContent = galleryItems[currentImageIndex].title;
-            updateModalCounter();
-            
-            // Remove loading state when image loads
-            modalImage.onload = function() {
-                modalImage.classList.remove('loading');
-                
-                // NEW: Ensure consistent sizing for all modal images
-                modalImage.style.maxHeight = '80vh';
-                modalImage.style.maxWidth = '90vw';
-                modalImage.style.width = 'auto';
-                modalImage.style.height = 'auto';
-            }
-            
-            // Handle image loading errors
-            modalImage.onerror = function() {
-                modalImage.classList.remove('loading');
-                modalImage.classList.add('failed-load');
-            }
+        /* Contact section specific styles */
+        #contact .bg-blue-900,
+        #contact .bg-indigo-900 {
+            transition: all 0.3s ease;
         }
         
-        function updateModalCounter() {
-            const modalCounter = document.getElementById('modalCounter');
-            if (modalCounter) {
-                modalCounter.textContent = `${currentImageIndex + 1} / ${galleryItems.length}`;
-            }
-        }
-
-        // Close modal when clicking outside the image
-        document.getElementById('imageModal').addEventListener('click', (e) => {
-            if (e.target === document.getElementById('imageModal')) {
-                closeModal();
-            }
-        });
-
-        // Keyboard navigation for modal
-        document.addEventListener('keydown', (e) => {
-            const modal = document.getElementById('imageModal');
-            if (modal.style.display === 'flex') {
-                if (e.key === 'Escape') {
-                    closeModal();
-                } else if (e.key === 'ArrowLeft') {
-                    navigateGallery(-1);
-                } else if (e.key === 'ArrowRight') {
-                    navigateGallery(1);
-                }
-            }
-        });
-
-        // Add click events to all gallery items
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get all gallery items and their corresponding large images from our array
-            const galleryItemsElements = document.querySelectorAll('.gallery-item');
-            
-            galleryItemsElements.forEach((item, index) => {
-                if (index < galleryItems.length) {
-                    item.addEventListener('click', function() {
-                        // Use the corresponding large image URL from our galleryItems array
-                        const largeImageSrc = galleryItems[index].src;
-                        const title = galleryItems[index].title;
-                        const alt = galleryItems[index].alt;
-                        openModal(largeImageSrc, title, alt);
-                    });
-                }
-            });
-            
-            // Hide loading animations when images are loaded
-            const images = document.querySelectorAll('.gallery-item img');
-            let loadedCount = 0;
-            
-            images.forEach(img => {
-                if (img.complete) {
-                    loadedCount++;
-                    if (img.parentElement) {
-                        const loader = img.parentElement.querySelector('.image-loading');
-                        if (loader) loader.style.display = 'none';
-                    }
-                } else {
-                    img.addEventListener('load', function() {
-                        loadedCount++;
-                        if (this.parentElement) {
-                            const loader = this.parentElement.querySelector('.image-loading');
-                            if (loader) loader.style.display = 'none';
-                        }
-                    });
-                    
-                    // Handle image loading errors
-                    img.addEventListener('error', function() {
-                        this.classList.add('failed-load');
-                        if (this.parentElement) {
-                            const loader = this.parentElement.querySelector('.image-loading');
-                            if (loader) loader.style.display = 'none';
-                        }
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+        #contact .bg-blue-900:hover,
+        #contact .bg-indigo-900:hover {
+            transform: translateY
